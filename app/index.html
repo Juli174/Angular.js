@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" ng-app="test">
+<head>
+  <meta charset="utf-8">
+  <title>My HTML File</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/app.css">
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+<body ng-controller="PhoneListCtrl">
+	<!--<div ng-init="name = 'world'" data-ng-controller="DemoCtrl">
+	  <p>Hello, {{name}}!</p>
+		<p>1 + 8 = {{1+8}}</p>
+	</div>-->
+	<h1>{{title}}</h1>
+	
+	<input type="text" ng-model="query"/>
+	
+	<ul>
+		<li ng-repeat="phone in phones | filter:query">
+			<span>{{phone.name}}</span>
+			<p>{{phone.snippet}}<br/>
+			Status: {{phone.status}}<br/>
+			Priority: {{phone.priority}}
+			</p>
+		</li>
+		
+	</ul>
+	<p>Общее количество телефонов {{(phones | filter:doneAndFilter).length}}</p>
+	<table>
+		<tbody>
+			<tr ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7]">
+				<td>{{i+1}}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<hr>
+	
+	<div>{{today | date:'dd/MM/yyyy'}}</div>
+	<ul>
+		<li>1. Currency: {{234 | currency}}</li>
+		<li>2. Date: {{1234214234 | date:'dd.MM.yyyy'}}</li>
+		<li>3. Number: {{1234.1 | number:3}}</li>
+		<li>4. LowerCase: {{'My Very Long String' | lowercase}}</li>
+		<li>5. UpperCase: {{'My Very Long String' | uppercase}}</li>
+		<li>6. Json: <pre>{{ {'text':'text', 'text2':'text text'} | json}}</pre></li>
+	</ul>
+	<table>
+		<thead>
+			<tr>
+				<th><a href="" ng-click="sort('name')">Name
+				<i class="glyphicon" ng-class="{'glyphicon-chevron-up' : isSortUp('name'),
+													'glyphicon-chevron-down' : isSortDown('name')}"
+				</a></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="phone in phones | orderBy:sortField:reverse">
+				<td>{{phone.name}}</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
